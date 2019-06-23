@@ -37,8 +37,8 @@
   cursor: -webkit-grab;
   cursor: grab;
   border-radius: 50%;
-  border: solid 2px #96dbfa;
-  background-color: #fff;
+  border: solid 2px #ACACAC;
+  background-color: #E6E6E6;
   -ms-touch-action: pan-x;
       touch-action: pan-x;
 }
@@ -48,7 +48,7 @@
   outline: none;
 }
 .rc-slider-handle-click-focused:focus {
-  border-color: #96dbfa;
+  border-color: #ACACAC;
   box-shadow: unset;
 }
 .rc-slider-handle:hover {
