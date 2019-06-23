@@ -10,7 +10,7 @@
     "input",
     "range"
   ],
-  "homepage": "http://github.com/react-component/slider/",
+  "homepage": "https://sperella.github.io/slider/",
   "repository": {
     "type": "git",
     "url": "git@github.com:react-component/slider.git"
@@ -46,7 +46,9 @@
     "pub": "rc-tools run pub --babel-runtime",
     "lint": "rc-tools run lint",
     "test": "jest",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "jest": {
     "setupFiles": [
@@ -81,6 +83,7 @@
   "dependencies": {
     "babel-runtime": "6.x",
     "classnames": "^2.2.5",
+    "gh-pages": "^2.0.1",
     "prop-types": "^15.5.4",
     "rc-tooltip": "^3.7.0",
     "rc-util": "^4.0.4",
