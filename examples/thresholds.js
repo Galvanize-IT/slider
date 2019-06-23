@@ -1,14 +1,14 @@
-webpackJsonp([4],{
+webpackJsonp([2],{
 
-/***/ 172:
+/***/ 176:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(173);
+module.exports = __webpack_require__(177);
 
 
 /***/ }),
 
-/***/ 173:
+/***/ 177:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21,15 +21,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rc_slider__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rc_slider___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rc_slider__);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rc_tooltip__ = __webpack_require__(34);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 /* eslint react/no-multi-comp: 0, no-console: 0 */
 
@@ -38,7 +41,31 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var Range = __WEBPACK_IMPORTED_MODULE_3_rc_slider___default.a.Range;
+
+// const Range = Slider.Range;
+
+var createSliderWithTooltip = __WEBPACK_IMPORTED_MODULE_3_rc_slider___default.a.createSliderWithTooltip;
+var Range = createSliderWithTooltip(__WEBPACK_IMPORTED_MODULE_3_rc_slider___default.a.Range);
+var Handle = __WEBPACK_IMPORTED_MODULE_3_rc_slider___default.a.Handle;
+
+var handle = function handle(props) {
+  var value = props.value,
+      dragging = props.dragging,
+      index = props.index,
+      restProps = _objectWithoutProperties(props, ['value', 'dragging', 'index']);
+
+  return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+    __WEBPACK_IMPORTED_MODULE_4_rc_tooltip__["a" /* default */],
+    {
+      prefixCls: 'rc-slider-tooltip',
+      overlay: value,
+      visible: dragging,
+      placement: 'top',
+      key: index
+    },
+    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(Handle, _extends({ value: value }, restProps))
+  );
+};
 
 var style = { width: 400, margin: 50 };
 
@@ -280,136 +307,94 @@ var PureRenderRange = function (_React$Component5) {
   return PureRenderRange;
 }(__WEBPACK_IMPORTED_MODULE_1_react___default.a.Component);
 
+var DynamicCount = function (_React$Component6) {
+  _inherits(DynamicCount, _React$Component6);
+
+  function DynamicCount(props) {
+    _classCallCheck(this, DynamicCount);
+
+    var _this6 = _possibleConstructorReturn(this, (DynamicCount.__proto__ || Object.getPrototypeOf(DynamicCount)).call(this, props));
+
+    _this6.onSliderChange = function (value) {
+      log(value);
+    };
+
+    _this6.onMinChange = function (e) {
+      _this6.setState({
+        min: +e.target.value || 0
+      });
+    };
+
+    _this6.onMaxChange = function (e) {
+      _this6.setState({
+        max: +e.target.value || 100
+      });
+    };
+
+    _this6.onCountChange = function (e) {
+      console.log(e.target.value);
+      console.log(_this6);
+      _this6.setState({
+        count: +e.target.value,
+        defaultValue: [0, 50, 100]
+      });
+    };
+
+    _this6.state = {
+      min: 0,
+      max: 100
+    };
+    return _this6;
+  }
+
+  _createClass(DynamicCount, [{
+    key: 'render',
+    value: function render() {
+      return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+        'div',
+        null,
+        __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(Range, { count: 4, defaultValue: [0, 25, 50, 75, 100], pushable: 5,
+          trackStyle: [{ backgroundColor: '#EF8585' }, { backgroundColor: '#E4D172' }, { backgroundColor: '#B2CE7A' }, { backgroundColor: '#85C7CE' }],
+          handleStyle: [{ backgroundColor: '#eee' }, { backgroundColor: '#eee' }, { backgroundColor: '#eee' }, { backgroundColor: '#eee' }, { backgroundColor: '#eee' }],
+          railStyle: { backgroundColor: 'black' },
+          marks: { 0: '0%', 100: '100%' },
+          tipFormatter: function tipFormatter(value) {
+            return value + '%';
+          }
+        }),
+        __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('br', null),
+        __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+          'label',
+          null,
+          'Segments: '
+        ),
+        __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('input', { type: 'number', min: 1, max: 5, value: this.state.count, onChange: this.onCountChange })
+      );
+    }
+  }]);
+
+  return DynamicCount;
+}(__WEBPACK_IMPORTED_MODULE_1_react___default.a.Component);
+
 __WEBPACK_IMPORTED_MODULE_2_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
   'div',
   null,
   __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
     'div',
     { style: style },
-    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-      'p',
-      null,
-      'Basic Range\uFF0C`allowCross=false`'
-    ),
-    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(Range, { allowCross: false, defaultValue: [0, 20], onChange: log })
-  ),
-  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-    'div',
-    { style: style },
-    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-      'p',
-      null,
-      'Basic Range\uFF0C`step=20` '
-    ),
-    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(Range, { step: 20, defaultValue: [20, 20], onBeforeChange: log })
-  ),
-  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-    'div',
-    { style: style },
-    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-      'p',
-      null,
-      'Basic Range\uFF0C`step=20, dots` '
-    ),
-    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(Range, { dots: true, step: 20, defaultValue: [20, 40], onAfterChange: log })
-  ),
-  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-    'div',
-    { style: style },
-    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-      'p',
-      null,
-      'Basic Range\uFF0Cdisabled'
-    ),
-    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(Range, { allowCross: false, defaultValue: [0, 20], onChange: log, disabled: true })
-  ),
-  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-    'div',
-    { style: style },
-    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-      'p',
-      null,
-      'Controlled Range'
-    ),
-    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(ControlledRange, null)
-  ),
-  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-    'div',
-    { style: style },
-    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-      'p',
-      null,
-      'Controlled Range, not allow across'
-    ),
-    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(ControlledRangeDisableAcross, null)
-  ),
-  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-    'div',
-    { style: style },
-    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-      'p',
-      null,
-      'Controlled Range, not allow across, pushable=5'
-    ),
-    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(ControlledRangeDisableAcross, { pushable: 5 })
-  ),
-  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-    'div',
-    { style: style },
-    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-      'p',
-      null,
-      'Multi Range'
-    ),
-    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(Range, { count: 3, defaultValue: [20, 40, 60, 80], pushable: true })
-  ),
-  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-    'div',
-    { style: style },
-    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-      'p',
-      null,
-      'Multi Range with custom track and handle style'
-    ),
-    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(Range, { count: 3, defaultValue: [20, 40, 60, 80], pushable: true,
-      trackStyle: [{ backgroundColor: 'red' }, { backgroundColor: 'green' }],
-      handleStyle: [{ backgroundColor: 'yellow' }, { backgroundColor: 'gray' }],
-      railStyle: { backgroundColor: 'black' }
+    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(Range, { count: 4, defaultValue: [0, 25, 50, 75, 100], pushable: 5,
+      trackStyle: [{ backgroundColor: '#EF8585' }, { backgroundColor: '#E4D172' }, { backgroundColor: '#B2CE7A' }, { backgroundColor: '#85C7CE' }],
+      handleStyle: [{ backgroundColor: '#eee' }, { backgroundColor: '#eee' }, { backgroundColor: '#eee' }, { backgroundColor: '#eee' }, { backgroundColor: '#eee' }],
+      railStyle: { backgroundColor: 'black' },
+      marks: { 0: '0%', 100: '100%' },
+      tipFormatter: function tipFormatter(value) {
+        return value + '%';
+      }
     })
-  ),
-  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-    'div',
-    { style: style },
-    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-      'p',
-      null,
-      'Customized Range'
-    ),
-    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(CustomizedRange, null)
-  ),
-  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-    'div',
-    { style: style },
-    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-      'p',
-      null,
-      'Range with dynamic `max` `min`'
-    ),
-    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(DynamicBounds, null)
-  ),
-  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-    'div',
-    { style: style },
-    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-      'p',
-      null,
-      'Range as child component'
-    ),
-    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(PureRenderRange, null)
   )
 ), document.getElementById('__react-content'));
 
 /***/ })
 
-},[172]);
-//# sourceMappingURL=range.js.map
+},[176]);
+//# sourceMappingURL=thresholds.js.map
