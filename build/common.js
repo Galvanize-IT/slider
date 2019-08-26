@@ -35169,10 +35169,9 @@ var Range = function (_React$Component) {
     key: 'onChange',
     value: function onChange(state) {
       var props = this.props;
-      var isNotControlled = !('value' in props);
-      // if (isNotControlled) {
-      // change to loc first and last dots
-      if (state.recent !== 0 && state.recent != props.defaultValue.length - 1) {
+
+      // Change to loc first and last dots
+      if (props.defaultValue && state.recent !== 0 && state.recent != props.defaultValue.length - 1) {
         this.setState(state);
       } else {
         var controlledState = {};

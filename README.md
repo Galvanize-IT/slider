@@ -1,3 +1,19 @@
+## When changes are needed for our fork:
+1. Make changes
+2. Make sure you didn't break anything with `npm test`
+3. Run the following
+```
+npm run build
+```
+```
+npm run compile
+```
+```
+npm run dist
+```
+3. Push to master
+4. Change the commit we point at in Forge to the new commit hash of master
+
 # rc-slider
 ---
 

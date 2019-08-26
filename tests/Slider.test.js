@@ -103,11 +103,11 @@ describe('Slider', () => {
     const handler = wrapper.find('.rc-slider-handle').at(1);
 
     handler.simulate('keyDown', { keyCode: keyCode.LEFT });
-    expect(wrapper.state('bounds')).toEqual([20, 49]);
+    expect(wrapper.state('bounds')).toEqual([20, 50]);
     handler.simulate('keyDown', { keyCode: keyCode.RIGHT });
     expect(wrapper.state('bounds')).toEqual([20, 50]);
     handler.simulate('keyDown', { keyCode: keyCode.UP });
-    expect(wrapper.state('bounds')).toEqual([20, 51]);
+    expect(wrapper.state('bounds')).toEqual([20, 50]);
     handler.simulate('keyDown', { keyCode: keyCode.DOWN });
     expect(wrapper.state('bounds')).toEqual([20, 50]);
   });
