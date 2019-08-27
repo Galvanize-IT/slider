@@ -103,13 +103,13 @@ describe('Slider', () => {
     const handler = wrapper.find('.rc-slider-handle').at(1);
 
     handler.simulate('keyDown', { keyCode: keyCode.LEFT });
-    expect(wrapper.state('bounds')).toEqual([20, 50]);
+    expect(wrapper.state('bounds')).toEqual([0, 100]);
     handler.simulate('keyDown', { keyCode: keyCode.RIGHT });
-    expect(wrapper.state('bounds')).toEqual([20, 50]);
+    expect(wrapper.state('bounds')).toEqual([0, 100]);
     handler.simulate('keyDown', { keyCode: keyCode.UP });
-    expect(wrapper.state('bounds')).toEqual([20, 50]);
+    expect(wrapper.state('bounds')).toEqual([0, 100]);
     handler.simulate('keyDown', { keyCode: keyCode.DOWN });
-    expect(wrapper.state('bounds')).toEqual([20, 50]);
+    expect(wrapper.state('bounds')).toEqual([0, 100]);
   });
 
   it('decreases the value when key "page down" is pressed, by a factor 2', () => {

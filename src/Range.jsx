@@ -79,10 +79,13 @@ class Range extends React.Component {
     const props = this.props;
     const isNotControlled = !('value' in props);
 
-    state = [0, state.bounds[1], state.bounds[2], state.bounds[3], 100]
+    if (state.bounds && state.bounds.length > 1) {
+      state.bounds[0] = 0
+      state.bounds[state.bounds.length - 1] = 100
+    }
 
     if (isNotControlled) {
-      this.setState({ ...state, bounds: state });
+      this.setState({ ...state });
     } else {
       const controlledState = {};
 
