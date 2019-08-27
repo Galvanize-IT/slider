@@ -77,10 +77,12 @@ class Range extends React.Component {
 
   onChange(state) {
     const props = this.props;
+    const isNotControlled = !('value' in props);
 
-    // Change to loc first and last dots
-    if (props.defaultValue && state.recent !== 0 && state.recent != props.defaultValue.length - 1) {
-      this.setState(state);
+    state = [0, state.bounds[1], state.bounds[2], state.bounds[3], 100]
+
+    if (isNotControlled) {
+      this.setState({ ...state, bounds: state });
     } else {
       const controlledState = {};
 
@@ -97,6 +99,7 @@ class Range extends React.Component {
 
     const data = { ...this.state, ...state };
     const changedValue = data.bounds;
+
     props.onChange(changedValue);
   }
 
