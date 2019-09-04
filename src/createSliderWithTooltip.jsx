@@ -60,7 +60,6 @@ export default function createSliderWithTooltip(Component) {
           visible={(!disabled && (this.state.visibles[index] || dragging)) || visible}
           key={index}
         >
-
           <Handle
             {...restProps}
             style={{

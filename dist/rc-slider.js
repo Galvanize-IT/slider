@@ -5940,10 +5940,15 @@ var Range = function (_React$Component) {
     key: 'onChange',
     value: function onChange(state) {
       var props = this.props;
+      var isNotControlled = !('value' in props);
 
-      // Change to loc first and last dots
-      if (props.defaultValue && state.recent !== 0 && state.recent != props.defaultValue.length - 1) {
-        this.setState(state);
+      if (state.bounds && state.bounds.length > 1) {
+        state.bounds[0] = 0;
+        state.bounds[state.bounds.length - 1] = 100;
+      }
+
+      if (isNotControlled) {
+        this.setState(_extends({}, state));
       } else {
         var controlledState = {};
 
@@ -5960,6 +5965,7 @@ var Range = function (_React$Component) {
 
       var data = _extends({}, this.state, state);
       var changedValue = data.bounds;
+
       props.onChange(changedValue);
     }
   }, {
